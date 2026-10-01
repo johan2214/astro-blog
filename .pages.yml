@@ -1,6 +1,7 @@
 media:
-  input: public
-  output: /
+  input: public/assets
+  output: /assets
+
 content:
   - name: posts
     label: Posts
@@ -13,13 +14,14 @@ content:
       - { name: pubDatetime, label: Date, type: date }
       - { name: modDatetime, label: Date, type: date }
       - { name: title, label: Title, type: string, required: true }
-      - { name: ogImage, label: Title, type: string }
+      - { name: ogImage, label: OG Image, type: string }
       - { name: slug, label: Slug, type: string }
       - { name: featured, label: Featured, type: boolean }
       - { name: draft, label: Draft, type: boolean }
       - { name: tags, label: Tags, type: string, list: true }
       - { name: description, label: Description, type: string }
       - { name: body, label: Body, type: rich-text }
+
   - name: about
     label: About page
     type: file
@@ -28,3 +30,64 @@ content:
       - { name: layout, type: string, hidden: true, default: "../layouts/AboutLayout.astro" }
       - { name: title, label: Title, type: string }
       - { name: body, label: Body, type: rich-text, options: { input: public/assets, output: /assets } }
+
+  # 👇 NUEVA PÁGINA DE INICIO
+  - name: home
+    label: Página de Inicio
+    type: file
+    path: src/content/home.yml   # Ajusta la ruta según tu estructura
+    format: yaml
+    fields:
+      - name: secciones
+        label: Secciones de la página
+        type: block
+        list: true
+        blockKey: type          # Guarda el tipo de bloque en la propiedad 'type'
+        blocks:
+          # --- HERO ---
+          - name: hero
+            label: Hero (Cabecera)
+            fields:
+              - { name: titulo, label: Título principal, type: string, required: true }
+              - { name: subtitulo, label: Subtítulo, type: text }
+              - { name: imagen_fondo, label: Imagen de fondo, type: image }
+              - { name: texto_boton, label: Texto del botón, type: string }
+              - { name: enlace_boton, label: Enlace del botón, type: string }
+
+          # --- CARACTERÍSTICAS ---
+          - name: caracteristicas
+            label: Características
+            fields:
+              - { name: titulo_seccion, label: Título de la sección, type: string }
+              - name: items
+                label: Lista de características
+                type: object
+                list: true
+                fields:
+                  - { name: icono, label: Icono, type: image }
+                  - { name: titulo_item, label: Título, type: string }
+                  - { name: descripcion, label: Descripción, type: text }
+
+          # --- TESTIMONIOS ---
+          - name: testimonios
+            label: Testimonios
+            fields:
+              - { name: titulo_seccion, label: Título de la sección, type: string }
+              - name: items
+                label: Lista de testimonios
+                type: object
+                list: true
+                fields:
+                  - { name: nombre, label: Nombre, type: string }
+                  - { name: cargo, label: Cargo / Empresa, type: string }
+                  - { name: texto, label: Testimonio, type: rich-text }
+                  - { name: avatar, label: Avatar, type: image }
+
+          # --- LLAMADA A LA ACCIÓN (CTA) ---
+          - name: cta
+            label: Llamada a la acción
+            fields:
+              - { name: titulo, label: Título, type: string }
+              - { name: texto, label: Texto, type: text }
+              - { name: texto_boton, label: Texto del botón, type: string }
+              - { name: enlace_boton, label: Enlace del botón, type: string }
