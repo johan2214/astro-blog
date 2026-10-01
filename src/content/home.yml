@@ -5,3 +5,8 @@ secciones:
     imagen_fondo: /assets/dev.svg
     texto_boton: Ver más
     enlace_boton: "#"
+  - type: cta
+    titulo: Llamada accion
+    texto: Llamada accion
+    texto_boton: Ver más
+    enlace_boton: "#"
