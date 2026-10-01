@@ -1,0 +1,7 @@
+secciones:
+  - type: hero
+    titulo: Hola mundo
+    subtitulo: sitio web
+    imagen_fondo: /assets/dev.svg
+    texto_boton: Ver más
+    enlace_boton: "#"
